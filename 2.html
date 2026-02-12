@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loki ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+overflow:hidden;
+text-align:center;
+font-family:'Quicksand', sans-serif;
+background-color:#ffe6f0;
+position:relative;
+}
+
+/* Heart Pattern Background */
+body::before{
+content:"💗 💕 💖 💘 💞 💓 💗 💕 💖 💘 💞 💓 💗 💕 💖 💘 💞 💓";
+position:absolute;
+width:200%;
+height:200%;
+font-size:60px;
+opacity:0.08;
+animation: patternMove 40s linear infinite;
+pointer-events:none;
+}
+
+@keyframes patternMove{
+from{transform:translate(0,0);}
+to{transform:translate(-200px,-200px);}
+}
+
+.page{
+display:none;
+height:100vh;
+padding-top:60px;
+}
+
+.active{
+display:block;
+}
+
+/* Romantic Rose Glow Card */
+.container{
+background:#fff0f5;
+border:3px solid #ff69b4;
+width:90%;
+max-width:520px;
+margin:auto;
+padding:40px;
+border-radius:35px;
+box-shadow:0 0 40px rgba(255,105,180,0.6);
+position:relative;
+}
+
+h1{
+font-family:'Pacifico', cursive;
+color:#ff4d88;
+font-size:32px;
+}
+
+h2{
+color:#ff6699;
+}
+
+button{
+padding:14px 30px;
+margin:12px;
+font-size:16px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+transition:0.4s ease;
+font-family:'Quicksand', sans-serif;
+background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+color:#a0004d;
+box-shadow:0 5px 15px rgba(255,105,180,0.3);
+}
+
+button:hover{
+background: linear-gradient(135deg, #ff1493, #ff4d88);
+color:white;
+transform:scale(1.1);
+box-shadow:0 0 20px rgba(255,20,147,0.8);
+}
+
+#yesBtn{
+background: linear-gradient(135deg, #ff69b4, #ff1493);
+color:white;
+}
+
+#yesBtn:hover{
+background: linear-gradient(135deg, #ff1493, #ff0066);
+box-shadow:0 0 25px rgba(255,20,147,1);
+}
+
+#noBtn{
+position:absolute;
+}
+
+img{
+width:260px;
+margin:20px 0;
+border-radius:20px;
+}
+
+.heart{
+position:absolute;
+color:#ff4d88;
+pointer-events:none;
+animation: floatUp linear forwards;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0) scale(1); opacity:1;}
+100%{transform:translateY(-120vh) scale(1.5); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div class="page active" id="loading">
+<div class="container">
+<h1>Loading love.exe 💕</h1>
+<p id="countdown">Starting in 5...</p>
+</div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+<div class="container">
+<h1>Loki 💖</h1>
+<img src="first.png" alt="First page Image">
+<p>After surviving all life updates together...</p>
+<h2>Will you be my Valentine? 🥺</h2>
+<button id="yesBtn">Yes 😍</button>
+<button id="noBtn">No 😢</button>
+</div>
+</div>
+
+<!-- STORY -->
+<div class="page" id="story">
+<div class="container">
+<h1>Our Story 💕</h1>
+<img src="second.png" alt="Second page image">
+<p>
+2017… I saw you and instantly had a crush. 💖<br><br>
+2018… we started talking.<br>
+March 15, 2019… that moment stayed forever.<br><br>
+2021… that shop opening. We talked. We flirted. We fell in love.<br><br>
+There were breaks and misunderstandings…<br>
+But from 2023 till now, we choose each other again and again.
+</p>
+<button onclick="showPage('proposal')">Continue 💘</button>
+</div>
+</div>
+
+<!-- PROPOSAL -->
+<div class="page" id="proposal">
+<div class="container">
+<h1>Loki 💍</h1>
+<img src="proposal.png" alt="Proposal">
+<h2>I love you.</h2>
+<p>
+From 2017 till now… through crushes, chaos, misunderstandings and version updates…  
+I still choose you. 💖<br><br>
+I want to understand you better.<br>
+I want to support you in every good and bad life brings.<br><br>
+Will you stay mine till the end? 💕
+</p>
+<button onclick="showPage('final')">Next 💕</button>
+</div>
+</div>
+
+<!-- HAPPY VALENTINE -->
+<div class="page" id="final">
+<div class="container">
+<h1>Happy Valentine’s Day ❤️</h1>
+<img src="fourth.png" alt="Fourth page image">
+<h2>Forever your Liki 💖</h2>
+
+<p>
+We survived emotional lag.<br>
+We survived version updates. 😉<br><br>
+And we are still running strong.
+</p>
+
+<button onclick="showPage('last')">One last thing 💕</button>
+</div>
+</div>
+
+<!-- LAST PAGE -->
+<div class="page" id="last">
+<div class="container">
+<img src="fifth.png" alt="Fifth page image">
+<h1>I love you. 💞</h1>
+</div>
+</div>
+
+<script>
+
+let timeLeft = 5;
+let countdown = document.getElementById("countdown");
+
+let timer = setInterval(function(){
+timeLeft--;
+countdown.innerHTML = "Starting in " + timeLeft + "...";
+if(timeLeft <= 0){
+clearInterval(timer);
+showPage("page1");
+}
+},1000);
+
+function showPage(id){
+let pages = document.getElementsByClassName("page");
+for(let i=0;i<pages.length;i++){
+pages[i].classList.remove("active");
+}
+document.getElementById(id).classList.add("active");
+}
+
+document.getElementById("yesBtn").onclick = function(){
+showPage("story");
+};
+
+let noBtn = document.getElementById("noBtn");
+let yesBtn = document.getElementById("yesBtn");
+let yesSize = 16;
+
+noBtn.onmouseenter = function(){
+let randomX = Math.random()*300;
+let randomY = Math.random()*200;
+noBtn.style.left = randomX + "px";
+noBtn.style.top = randomY + "px";
+yesSize += 4;
+yesBtn.style.fontSize = yesSize + "px";
+};
+
+function createHeart(){
+let heart = document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left = Math.random()*100 + "vw";
+heart.style.top = Math.random()*100 + "vh";
+heart.style.fontSize = Math.random()*20 + 15 + "px";
+heart.style.animationDuration = Math.random()*3 + 4 + "s";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},6000);
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
